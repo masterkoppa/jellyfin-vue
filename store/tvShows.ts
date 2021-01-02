@@ -67,7 +67,14 @@ export const mutations: MutationTree<TvShowsState> = {
 
     Vue.set(state, itemId, {
       seasons: state[itemId]?.seasons || [],
-      seasonEpisodes: [...state[itemId].seasonEpisodes, seasonEpisodes]
+      seasonEpisodes: [...state[itemId].seasonEpisodes, seasonEpisodes].sort(
+        (a, b): number => {
+          return (a?.[0]?.ParentIndexNumber || 0) <
+            (b?.[0]?.ParentIndexNumber || 0)
+            ? -1
+            : 1;
+        }
+      )
     });
   }
 };
