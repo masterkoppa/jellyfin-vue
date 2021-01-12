@@ -1,5 +1,5 @@
 import { ActionTree, GetterTree, MutationTree } from 'vuex';
-import { clamp, union, shuffle } from 'lodash';
+import { clamp, shuffle } from 'lodash';
 import {
   BaseItemDto,
   ChapterInfo,
@@ -129,7 +129,7 @@ export const mutations: MutationTree<PlaybackManagerState> = {
     state.queue = queue;
   },
   ADD_TO_QUEUE(state: PlaybackManagerState, { queue }: QueueMutationPayload) {
-    state.queue = union(state.queue, queue);
+    state.queue = [...state.queue, ...queue];
   },
   CLEAR_QUEUE(state: PlaybackManagerState) {
     state.queue = [];
