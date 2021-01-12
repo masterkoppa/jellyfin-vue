@@ -159,7 +159,6 @@
   "serverNotFound": "Server not found",
   "serverVersion": "Server version",
   "serverVersionTooLow": "Server version needs to be 10.7.0 or higher",
-  "settings": "Settings",
   "settingsSections": {
     "account": {
       "description": "Edit your user's information",
@@ -232,6 +231,24 @@
     "users": {
       "description": "Manage users and their permissions",
       "name": "Users"
+    }
+  },
+  "settings": {
+    "settings": "Settings",
+    "help": "Help",
+    "devices": {
+      "deleteAll": "Delete all",
+      "deleteDeviceSuccess": "Device deleted successfully",
+      "deleteDeviceError": "Error deleting device",
+      "deleteAllDevicesSuccess": "All devices deleted successfully",
+      "deleteAllDevicesError": "Error deleting all devices",
+      "noDevicesFound": "No devices found",
+      "delete": "Delete",
+      "appName": "App name",
+      "appVersion": "App version",
+      "lastActive": "Last active",
+      "userName": "Username",
+      "devices": "Devices"
     }
   },
   "shows": "Shows",
