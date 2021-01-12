@@ -26,7 +26,11 @@
               :key="device.Id"
               @click="setSelectedDevice(device)"
             >
-              <v-avatar></v-avatar>
+              <v-avatar>
+                <v-icon>
+                  {{ getDeviceIcon(device) }}
+                </v-icon>
+              </v-avatar>
               <v-list-item-content>
                 <v-list-item-title
                   v-text="`${device.LastUserName} on ${device.Name}`"
@@ -192,6 +196,50 @@ export default Vue.extend({
         console.error(error);
       }
       this.deviceInfoDialog = false;
+    },
+    getDeviceIcon({ AppName, Name }: DeviceInfo): string {
+      switch (AppName?.toLowerCase()) {
+        case 'samsung smart tv':
+          return 'mdi-television';
+        case 'xbox one':
+          return 'microsoft-xbox';
+        case 'sony ps4':
+          return 'mdi-sony-playstation';
+        case 'kodi':
+          return 'mdi-kodi';
+        case 'jellyfin android':
+        case 'android tv':
+          return 'mdi-android';
+        case 'jellyfin web':
+        case 'jellyfin web (vue)':
+          switch (Name?.toLowerCase()) {
+            case 'opera':
+            case 'opera tv':
+            case 'opera android':
+              return 'mdi-opera';
+            case 'chrome':
+            case 'chrome android':
+              return 'mdi-google-chrome';
+            case 'firefox':
+            case 'firefox android':
+              return 'mdi-firefox';
+            case 'safari':
+            case 'safari ipad':
+            case 'safari iphone':
+              return 'mdi-apple-safari';
+            case 'edge chromium':
+            case 'edge chromium android':
+            case 'edge chromium ipad':
+            case 'edge chromium iphone':
+              return 'mdi-microsoft-edge';
+            case 'edge':
+              return 'mdi-microsoft-edge-legacy';
+            default:
+              return 'mdi-language-html5';
+          }
+        default:
+          return 'mdi-devices';
+      }
     }
   }
 });
