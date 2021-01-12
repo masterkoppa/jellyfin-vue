@@ -2,7 +2,7 @@
   <settings-page>
     <template #content>
       <v-col md="6" class="pt-0 pb-4">
-        <h2 class="text-h6 mb-2">{{ $t('logsAndActivity.logs') }}</h2>
+        <h2 class="text-h6 mb-2">{{ $t('settings.logsAndActivity.logs') }}</h2>
         <v-list v-if="logFiles && logFiles.length > 0" two-line class="mb-2">
           <v-list-item-group>
             <v-list-item
@@ -29,13 +29,13 @@
         </v-list>
         <v-card v-else-if="loadingLogsStatus.status === 'loaded'">
           <v-card-title>
-            {{ $t('logsAndActivity.noLogsFound') }}
+            {{ $t('settings.logsAndActivity.noLogsFound') }}
           </v-card-title>
         </v-card>
         <v-card v-else-if="loadingLogsStatus.status === 'error'">
           <v-card-title>
             <v-icon color="error" class="pr-2">mdi-alert-circle</v-icon>
-            {{ $t('logsAndActivity.failedGetLogs') }}
+            {{ $t('settings.logsAndActivity.failedGetLogs') }}
           </v-card-title>
           <v-card-text v-if="loadingLogsStatus.errorMessage">
             {{ loadingLogsStatus.errorMessage }}</v-card-text
@@ -43,7 +43,9 @@
         </v-card>
       </v-col>
       <v-col md="6" class="pt-0 pb-4">
-        <h2 class="text-h6 mb-2">{{ $t('logsAndActivity.activity') }}</h2>
+        <h2 class="text-h6 mb-2">
+          {{ $t('settings.logsAndActivity.activity') }}
+        </h2>
         <v-list
           v-if="activityList && activityList.length > 0"
           two-line
@@ -72,13 +74,13 @@
         </v-list>
         <v-card v-else-if="loadingActivityStatus.status === 'loaded'">
           <v-card-title>
-            {{ $t('logsAndActivity.noActivityFound') }}
+            {{ $t('settings.logsAndActivity.noActivityFound') }}
           </v-card-title>
         </v-card>
         <v-card v-else-if="loadingActivityStatus.status === 'error'">
           <v-card-title>
             <v-icon color="error" class="pr-2">mdi-alert-circle</v-icon>
-            {{ $t('logsAndActivity.failedGetActivity') }}
+            {{ $t('settings.logsAndActivity.failedGetActivity') }}
           </v-card-title>
           <v-card-text v-if="loadingActivityStatus.errorMessage">
             {{ loadingActivityStatus.errorMessage }}
@@ -151,7 +153,7 @@ export default Vue.extend({
         // eslint-disable-next-line no-console
         console.error(error);
         this.pushSnackbarMessage({
-          message: this.$t('logsAndActivity.failedGetActivity'),
+          message: this.$t('settings.logsAndActivity.failedGetActivity'),
           color: 'error'
         });
       }
@@ -173,7 +175,7 @@ export default Vue.extend({
         // eslint-disable-next-line no-console
         console.error(error);
         this.pushSnackbarMessage({
-          message: this.$t('logsAndActivity.failedGetLogs'),
+          message: this.$t('settings.logsAndActivity.failedGetLogs'),
           color: 'error'
         });
       }

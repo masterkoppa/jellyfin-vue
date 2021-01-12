@@ -99,14 +99,6 @@
   "loginAs": "Login as {name}",
   "logo": "Logo",
   "logout": "Logout",
-  "logsAndActivity": {
-    "activity": "Activity",
-    "failedGetActivity": "Unable to get activity",
-    "failedGetLogs": "Unable to get logs",
-    "logs": "Logs",
-    "noActivityFound": "No activities found",
-    "noLogsFounr": "No logs found"
-  },
   "manualLogin": "Manual login",
   "menu": "Menu",
   "metadataEditor": "Metadata editor",
@@ -249,6 +241,14 @@
       "lastActive": "Last active",
       "userName": "Username",
       "devices": "Devices"
+    },
+    "logsAndActivity": {
+      "activity": "Activity",
+      "failedGetActivity": "Unable to get activity",
+      "failedGetLogs": "Unable to get logs",
+      "logs": "Logs",
+      "noActivityFound": "No activities found",
+      "noLogsFound": "No logs found"
     }
   },
   "shows": "Shows",
