@@ -148,7 +148,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapActions, mapGetters } from 'vuex';
-import timeUtils from '~/mixins/timeUtils';
+import dateTimeUtils from '~/mixins/dateTimeUtils';
 import { AppState } from '~/store';
 import { PlaybackStatus } from '~/store/playbackManager';
 import {
@@ -157,7 +157,7 @@ import {
 } from '~/utils/supportedFeatures';
 
 export default Vue.extend({
-  mixins: [timeUtils],
+  mixins: [dateTimeUtils],
   data() {
     return {
       supportedFeatures: {} as SupportedFeaturesInterface

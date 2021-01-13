@@ -30,7 +30,7 @@ import {
   RepeatMode
 } from '@jellyfin/client-axios';
 import { AppState } from '~/store';
-import timeUtils from '~/mixins/timeUtils';
+import dateTimeUtils from '~/mixins/dateTimeUtils';
 import imageHelper from '~/mixins/imageHelper';
 
 declare global {
@@ -41,7 +41,7 @@ declare global {
 }
 
 export default Vue.extend({
-  mixins: [imageHelper, timeUtils],
+  mixins: [imageHelper, dateTimeUtils],
   data() {
     return {
       playbackInfo: {} as PlaybackInfoResponse,

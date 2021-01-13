@@ -39,7 +39,7 @@
               <span>{{ $t('settings.devices.lastActive') }}</span>
             </v-col>
             <v-col class="pt-0 pb-0">
-              <span>{{ selectedDevice.DateLastActivity }}</span>
+              <span>{{ formatDateTime(selectedDevice.DateLastActivity) }}</span>
             </v-col>
           </v-row>
         </v-col>
@@ -66,6 +66,14 @@ export default Vue.extend({
     isDialog: {
       default: false,
       type: Boolean
+    }
+  },
+  methods: {
+    formatDateTime(date: Date): string {
+      return this.$dateFns.format(
+        this.$dateFns.parseJSON(date),
+        'HH:mm dd/MM/yy'
+      );
     }
   }
 });

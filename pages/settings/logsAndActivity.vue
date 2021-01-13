@@ -66,7 +66,7 @@
               <v-list-item-action>
                 <v-list-item-subtitle
                   class="text-capitalize-first-letter"
-                  v-text="getFormattedActivityDate(activity.Date)"
+                  v-text="formatDateTime(activity.Date)"
                 />
               </v-list-item-action>
             </v-list-item>
@@ -98,6 +98,7 @@ import colors from 'vuetify/lib/util/colors';
 import { ActivityLogEntry, LogFile, LogLevel } from '@jellyfin/client-axios';
 import { decodeHTML } from 'entities';
 import htmlHelper from '~/mixins/htmlHelper';
+import dateTimeUtils from '~/mixins/dateTimeUtils';
 
 interface LoadingStatus {
   status: 'loading' | 'loaded' | 'error';
@@ -105,7 +106,7 @@ interface LoadingStatus {
 }
 
 export default Vue.extend({
-  mixins: [htmlHelper],
+  mixins: [htmlHelper, dateTimeUtils],
   middleware: 'adminMiddleware',
   data() {
     return {
@@ -234,12 +235,6 @@ export default Vue.extend({
         default:
           return 'mdi-help';
       }
-    },
-    getFormattedActivityDate(date: Date): string {
-      return this.$dateFns.formatRelative(
-        this.$dateFns.parseJSON(date),
-        new Date()
-      );
     },
     getFormattedLogDate(date: Date): string {
       return this.$dateFns.format(date, 'Ppp');

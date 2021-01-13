@@ -32,10 +32,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapActions, mapGetters } from 'vuex';
-import timeUtils from '~/mixins/timeUtils';
+import dateTimeUtils from '~/mixins/dateTimeUtils';
 
 export default Vue.extend({
-  mixins: [timeUtils],
+  mixins: [dateTimeUtils],
   data() {
     return {
       clicked: false,

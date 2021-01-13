@@ -1,11 +1,11 @@
 import Vue from 'vue';
-import timeUtils from '~/mixins/timeUtils.ts';
+import dateTimeUtils from '~/mixins/dateTimeUtils.ts';
 
 const TestComponent = new Vue({
-  mixins: [timeUtils]
+  mixins: [dateTimeUtils]
 });
 
-describe('timeUtils', () => {
+describe('dateTimeUtils', () => {
   test('converts time from ms to ticks', () => {
     expect(TestComponent.ticksToMs(10000)).toEqual(1);
 

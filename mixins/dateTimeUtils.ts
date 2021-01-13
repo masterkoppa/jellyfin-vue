@@ -1,5 +1,5 @@
 /**
- * Utility for converting time between ticks and milliseconds
+ * Utility for converting time between ticks and milliseconds, and formatting dates
  *
  * @mixin
  */
@@ -33,12 +33,14 @@ declare module '@nuxt/types' {
     ticksToMs: (ticks: number) => number;
     msToTicks: (ms: number) => number;
     formatTime: (seconds: number) => number;
+    formatDateTime: (date: Date) => string;
   }
 
   interface NuxtAppOptions {
     ticksToMs: (ticks: number) => number;
     msToTicks: (ms: number) => number;
     formatTime: (seconds: number) => number;
+    formatDateTime: (date: Date) => string;
   }
 }
 
@@ -47,10 +49,11 @@ declare module 'vue/types/vue' {
     ticksToMs: (ticks: number | null | undefined) => number;
     msToTicks: (ms: number) => number;
     formatTime: (seconds: number) => number;
+    formatDateTime: (date: Date) => string;
   }
 }
 
-const timeUtils = Vue.extend({
+const dateTimeUtils = Vue.extend({
   methods: {
     /**
      * Converts .NET ticks to milliseconds
@@ -92,8 +95,36 @@ const timeUtils = Vue.extend({
       } else {
         return `${minutes}:${formatDigits(seconds)}`;
       }
+    },
+    /**
+     * Formats Dates
+     * E.g. 01-01-2021 01:00 (input) 01-01-2021 13:00 (current)
+     *      returns 12 hours ago
+     *      If the date passed is more than 7 days ago
+     *      E.g. 01-01-2021 01:00 (input) 10-01-2021 13:00 (current)
+     *      return 01:00 01/01/2021
+     *
+     * @param {Date} date - Date to be formatted
+     * @returns {string} Formatted Date
+     */
+    formatDateTime(date: Date): string {
+      if (
+        this.$dateFns.isAfter(
+          this.$dateFns.parseJSON(date),
+          this.$dateFns.subDays(new Date(), 7)
+        )
+      ) {
+        return this.$dateFns.formatRelative(
+          this.$dateFns.parseJSON(date),
+          new Date()
+        );
+      }
+      return this.$dateFns.format(
+        this.$dateFns.parseJSON(date),
+        'HH:mm dd/MM/yy'
+      );
     }
   }
 });
 
-export default timeUtils;
+export default dateTimeUtils;

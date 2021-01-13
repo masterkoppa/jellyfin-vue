@@ -80,10 +80,10 @@ import Vue from 'vue';
 import { mapActions } from 'vuex';
 import { BaseItemDto, ImageType } from '@jellyfin/client-axios';
 import imageHelper from '~/mixins/imageHelper';
-import timeUtils from '~/mixins/timeUtils';
+import dateTimeUtils from '~/mixins/dateTimeUtils';
 
 export default Vue.extend({
-  mixins: [imageHelper, timeUtils],
+  mixins: [imageHelper, dateTimeUtils],
   data() {
     return {
       loading: true,

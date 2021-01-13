@@ -235,12 +235,12 @@
 import { BaseItemDto, ImageType, RepeatMode } from '@jellyfin/client-axios';
 import Vue from 'vue';
 import { mapActions, mapGetters } from 'vuex';
-import timeUtils from '~/mixins/timeUtils';
 import imageHelper from '~/mixins/imageHelper';
+import dateTimeUtils from '~/mixins/dateTimeUtils';
 import { PlaybackStatus } from '~/store/playbackManager';
 
 export default Vue.extend({
-  mixins: [timeUtils, imageHelper],
+  mixins: [dateTimeUtils, imageHelper],
   computed: {
     ...mapGetters('playbackManager', [
       'getCurrentItem',

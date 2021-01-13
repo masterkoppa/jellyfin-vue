@@ -24,10 +24,10 @@
 import Vue from 'vue';
 import { intervalToDuration } from 'date-fns';
 import { BaseItemDto } from '@jellyfin/client-axios';
-import timeUtils from '~/mixins/timeUtils';
+import dateTimeUtils from '~/mixins/dateTimeUtils';
 
 export default Vue.extend({
-  mixins: [timeUtils],
+  mixins: [dateTimeUtils],
   props: {
     item: {
       type: Object as () => BaseItemDto,
