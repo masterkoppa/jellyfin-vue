@@ -14,8 +14,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { pickBy } from 'lodash';
+import { BaseItemDto } from '@jellyfin/client-axios';
 import { getShapeFromCollectionType } from '~/utils/items';
 import { HomeSection } from '~/store/homeSection';
 
@@ -78,11 +79,16 @@ export default Vue.extend({
           case 'latestmedia': {
             const latestMediaSections = [];
 
-            const userViewsRequest = await this.$api.userViews.getUserViews({
-              userId: this.$auth.user?.Id
-            });
+            let userViews: BaseItemDto[] = await this.getUserViews();
 
-            if (userViewsRequest.data.Items) {
+            if (!userViews.length) {
+              await this.refreshUserViews();
+              userViews = await this.getUserViews();
+            } else {
+              this.refreshUserViews();
+            }
+
+            if (userViews) {
               const excludeViewTypes = [
                 'playlists',
                 'livetv',
@@ -90,7 +96,7 @@ export default Vue.extend({
                 'channels'
               ];
 
-              for (const userView of userViewsRequest.data.Items) {
+              for (const userView of userViews) {
                 if (
                   excludeViewTypes.includes(userView.CollectionType as string)
                 ) {
@@ -147,7 +153,9 @@ export default Vue.extend({
     this.setAppBarOpacity({ opaqueAppBar: true });
   },
   methods: {
-    ...mapActions('page', ['setPageTitle', 'setAppBarOpacity'])
+    ...mapActions('page', ['setPageTitle', 'setAppBarOpacity']),
+    ...mapActions('userViews', ['refreshUserViews']),
+    ...mapGetters('userViews', ['getUserViews'])
   }
 });
 </script>
