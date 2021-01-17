@@ -255,11 +255,7 @@ export const actions: ActionTree<PlaybackManagerState, PlaybackManagerState> = {
       commit('STOP_PLAYBACK');
     }
 
-    console.dir(items);
-
     const translatedItems = await translateItemForPlayback(items);
-
-    console.dir(translatedItems);
 
     commit('SET_QUEUE', { queue: translatedItems });
     commit('SET_CURRENT_ITEM_INDEX', { currentItemIndex: startFromIndex });
